@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 19, 2025 at 10:46 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Oct 19, 2025 at 06:56 PM
+-- Server version: 8.0.43-0ubuntu0.24.04.2
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id_admin` int(5) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `username` varchar(128) NOT NULL,
-  `password` varchar(128) NOT NULL,
-  `nama_lengkap` varchar(128) NOT NULL
+  `id_admin` int NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_lengkap` varchar(128) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -42,12 +42,12 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `anggota` (
-  `id_anggota` int(5) NOT NULL,
-  `nama_lengkap` varchar(128) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `password` varchar(128) NOT NULL,
-  `alamat` varchar(128) NOT NULL,
-  `no_telepon` varchar(20) NOT NULL
+  `id_anggota` int NOT NULL,
+  `nama_lengkap` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_telepon` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -57,11 +57,11 @@ CREATE TABLE `anggota` (
 --
 
 CREATE TABLE `booking` (
-  `id_booking` int(5) NOT NULL,
+  `id_booking` int NOT NULL,
   `tanggal_boking` date NOT NULL,
-  `status` varchar(20) NOT NULL,
-  `id_anggota` int(5) NOT NULL,
-  `id_buku` int(5) NOT NULL
+  `status` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_anggota` int NOT NULL,
+  `id_buku` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -71,12 +71,12 @@ CREATE TABLE `booking` (
 --
 
 CREATE TABLE `buku` (
-  `id_buku` int(5) NOT NULL,
-  `judul` varchar(128) NOT NULL,
-  `penulis` varchar(128) NOT NULL,
-  `penerbit` varchar(128) NOT NULL,
-  `tahun_terbit` int(6) NOT NULL,
-  `stok` int(3) NOT NULL
+  `id_buku` int NOT NULL,
+  `judul` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `penulis` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `penerbit` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `tahun_terbit` int NOT NULL,
+  `stok` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,7 +84,9 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `stok`) VALUES
-(3, 'Cara Hidup Tenang No Root', 'Nahida', 'Gramedia', 2025, 7);
+(3, 'Cara Hidup Tenang No Root', 'Nahida', 'Gramedia', 2025, 7),
+(4, 'Cara Menjadi Kaya No Root', 'Kiki', 'Kiky Productio', 2025, 90),
+(5, 'Hidup Seperty Lary', 'Thomas Alfa Edi Sound', 'Horeg Group', 2029, 70);
 
 -- --------------------------------------------------------
 
@@ -93,8 +95,8 @@ INSERT INTO `buku` (`id_buku`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `
 --
 
 CREATE TABLE `buku_kategori` (
-  `id_buku` int(5) NOT NULL,
-  `id_kategori` int(5) NOT NULL
+  `id_buku` int NOT NULL,
+  `id_kategori` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -104,8 +106,8 @@ CREATE TABLE `buku_kategori` (
 --
 
 CREATE TABLE `kategori` (
-  `id_kategori` int(5) NOT NULL,
-  `nama_kategori` varchar(128) NOT NULL
+  `id_kategori` int NOT NULL,
+  `nama_kategori` varchar(128) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -115,12 +117,12 @@ CREATE TABLE `kategori` (
 --
 
 CREATE TABLE `peminjaman` (
-  `id_peminjaman` int(5) NOT NULL,
+  `id_peminjaman` int NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali` date NOT NULL,
-  `status` varchar(20) NOT NULL,
-  `id_anggota` int(5) NOT NULL,
-  `id_buku` int(5) NOT NULL
+  `status` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_anggota` int NOT NULL,
+  `id_buku` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -182,37 +184,37 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_booking` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_peminjaman` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
