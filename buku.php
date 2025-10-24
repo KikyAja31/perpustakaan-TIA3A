@@ -41,8 +41,8 @@ require_once 'config.php';
                     <td><?php echo $row['tahun_terbit']?></td>
                     <td><?php echo $row['stok']?></td>
                     <td>
-                        <a href="" class="btn btn-success btn-sm">Edit</a>
-                        <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                        <a href="edit_buku.php?id=<?php echo $row['id_buku']; ?>" class="btn btn-success btn-sm">Edit</a>
+                        <a href="hapus_buku.php?id=<?php echo $row['id_buku']; ?>" class="btn btn-danger btn-sm">Hapus</a>
                     </td>
                 </tr>
                 <?php $no++;endwhile; ?>
